@@ -14,12 +14,13 @@ function App() {
   const [users, setUsers] = useState<User[]>([]);
   const [editingUser, setEditingUser] = useState<User | null>(null);
 
-  const loadUsers = async () => {
-    const res = await getUsers();
-    setUsers(res.data);
-  };
-
+  // Fetch ONLY once
   useEffect(() => {
+    const loadUsers = async () => {
+      const res = await getUsers();
+      setUsers(res.data);
+    };
+
     loadUsers();
   }, []);
 
@@ -27,6 +28,7 @@ function App() {
     if (editingUser?.id) {
       await updateUser(editingUser.id, user);
 
+      // Update locally
       setUsers(prev =>
         prev.map(u =>
           u.id === editingUser.id
@@ -39,7 +41,8 @@ function App() {
     } else {
       const res = await createUser(user);
 
-      setUsers(prev => [...prev, res.data]);
+      // Add new user at TOP so it's visible
+      setUsers(prev => [res.data, ...prev]);
     }
   };
 
@@ -50,6 +53,7 @@ function App() {
   const handleDelete = async (id: number) => {
     await deleteUser(id);
 
+    // Remove locally
     setUsers(prev => prev.filter(u => u.id !== id));
 
     if (editingUser?.id === id) {
@@ -78,7 +82,6 @@ function App() {
 }
 
 export default App;
-
 
 
 

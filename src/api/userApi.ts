@@ -8,46 +8,100 @@ const normalizeUser = (apiUser: any): User => {
 
   return {
     id: apiUser.id,
-    firstName: firstName || "",
-    lastName: lastNameParts.join(" ") || "",
-    email: apiUser.email || "",
-    phone: apiUser.phone || ""
+    firstName,
+    lastName: lastNameParts.join(" "),
+    email: apiUser.email,
+    phone: apiUser.phone
   };
 };
 
 export const getUsers = async () => {
   const res = await axios.get(API_URL);
-
-  return {
-    data: res.data.map(normalizeUser)
-  };
+  return { data: res.data.map(normalizeUser) };
 };
 
 export const createUser = async (user: User) => {
   const res = await axios.post(API_URL, user);
-
   return {
     data: {
       ...user,
-      id: res.data.id || Math.floor(Math.random() * 100000)
+      id: res.data.id || Date.now()
     }
   };
 };
 
 export const updateUser = async (id: number, user: User) => {
   await axios.put(`${API_URL}/${id}`, user);
-
-  return {
-    data: {
-      ...user,
-      id
-    }
-  };
 };
 
 export const deleteUser = async (id: number) => {
   await axios.delete(`${API_URL}/${id}`);
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import axios from "axios";
+// import type { User } from "../types/User";
+
+// const API_URL = "https://jsonplaceholder.typicode.com/users";
+
+// const normalizeUser = (apiUser: any): User => {
+//   const [firstName, ...lastNameParts] = apiUser.name.split(" ");
+
+//   return {
+//     id: apiUser.id,
+//     firstName: firstName || "",
+//     lastName: lastNameParts.join(" ") || "",
+//     email: apiUser.email || "",
+//     phone: apiUser.phone || ""
+//   };
+// };
+
+// export const getUsers = async () => {
+//   const res = await axios.get(API_URL);
+
+//   return {
+//     data: res.data.map(normalizeUser)
+//   };
+// };
+
+// export const createUser = async (user: User) => {
+//   const res = await axios.post(API_URL, user);
+
+//   return {
+//     data: {
+//       ...user,
+//       id: res.data.id || Math.floor(Math.random() * 100000)
+//     }
+//   };
+// };
+
+// export const updateUser = async (id: number, user: User) => {
+//   await axios.put(`${API_URL}/${id}`, user);
+
+//   return {
+//     data: {
+//       ...user,
+//       id
+//     }
+//   };
+// };
+
+// export const deleteUser = async (id: number) => {
+//   await axios.delete(`${API_URL}/${id}`);
+// };
 
 
 
