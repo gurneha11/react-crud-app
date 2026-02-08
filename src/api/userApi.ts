@@ -1,7 +1,11 @@
 import axios from "axios";
 import type { User } from "../types/User";
 
-const API_URL = "http://localhost:3002/users";
+//const API_URL = "http://localhost:3002/users";
+
+const API_URL = "https://react-crud-app-mock-api.vercel.app/users";
+
+
 //const API_URL = "https://jsonplaceholder.typicode.com/users";
 
 export const getUsers = () => axios.get<User[]>(API_URL);
