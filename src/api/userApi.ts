@@ -5,7 +5,7 @@ import type { User } from "../types/User";
 
 //const API_URL = "https://react-crud-app-mock-api.vercel.app/users";
 // src/api/userApi.ts
-const API_URL = "https://react-crud-app-khav.vercel.app/api/users";
+const API_URL = "https://react-crud-app-qowf.vercel.app/api/users";
 
 
 
