@@ -3,7 +3,8 @@ import type { User } from "../types/User";
 
 //const API_URL = "http://localhost:3002/users";
 
-const API_URL = "https://react-crud-app-mock-api.vercel.app/users";
+//const API_URL = "https://react-crud-app-mock-api.vercel.app/users";
+const API_URL = "https://vercel.com/gurneha-kaurs-projects/react-crud-app-khav";
 
 
 //const API_URL = "https://jsonplaceholder.typicode.com/users";
